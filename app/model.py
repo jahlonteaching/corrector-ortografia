@@ -46,7 +46,7 @@ class Corrector(ICorrector):
                 temperature=0
             )
 
-            texto_corregido = resp.choice[0].text.strip()
+            texto_corregido = resp.choices[0].text.strip()
 
             self.historial.append((texto, texto_corregido))
 
