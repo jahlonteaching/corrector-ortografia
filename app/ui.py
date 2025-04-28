@@ -2,17 +2,9 @@ from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton, QMessageBox
 )
 from PySide6.QtCore import Qt
+
+from app.model import Corrector
 from interfaces import ICorrector
-
-
-class CorrectorDummy(ICorrector):
-    """Implementación ficticia para pruebas"""
-    def corregir_ortografia(self, texto: str) -> str:
-        return texto.replace("ortogrfía", "ortografía").replace("exelente", "excelente")
-
-    def obtener_cantidad_errores(self, texto: str) -> int:
-        errores = ["ortogrfía", "exelente"]
-        return sum(texto.count(palabra) for palabra in errores)
 
 
 class CorrectorGUI(QWidget):
@@ -56,7 +48,7 @@ class CorrectorGUI(QWidget):
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
-    corrector = CorrectorDummy()  # Aquí puedes inyectar tu implementación real
+    corrector = Corrector()
     gui = CorrectorGUI(corrector)
     gui.resize(600, 500)
     gui.show()
